@@ -44,7 +44,7 @@ def insert_new(request, database_file, form):
                     "forms/insert_patient.html",
                     {
                         "form": url_form,
-                        "page_title": "New patient anagraphic",
+                        "page_title": "New patient - " + database_file,
                         "incoming_url": request.resolver_match.url_name,
                         "errore": "Patient already in the database",
                     },
@@ -59,7 +59,7 @@ def insert_new(request, database_file, form):
         "forms/insert_patient.html",
         {
             "form": url_form,
-            "page_title": "New patient anagraphic",
+            "page_title": "New patient - " + database_file,
             "incoming_url": request.resolver_match.url_name,
         },
     )
@@ -104,6 +104,7 @@ def search_patient(request, database, phase):
         "forms/search_patient.html",
         {
             "form": form,
+            "page_title": "Search patient - " + database,
             "pk_persona": pk_patient,
             "errore": error,
             "incoming_url": request.resolver_match.url_name,
@@ -140,12 +141,17 @@ def edit_patient(request, database_file, edit_phase, pk):
     else:
         form = parsed_form(instance=persona)
 
+    # Descrizione dettagliata del form, se c'è
+    extracted_page_title = (
+        form.get_description if hasattr(form, "get_description") else edit_phase
+    )
+
     return render(
         request,
         "forms/edit_patient.html",
         {
             "form": form,
-            "page_title": "Intraoperative data",
+            "page_title": extracted_page_title,
             "name": persona.anagraphicName,
             "surname": persona.anagraphicSurname,
             "birthdate": persona.anagraphicBirthdate,

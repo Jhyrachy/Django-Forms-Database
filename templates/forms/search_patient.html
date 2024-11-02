@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Ricerca Paziente{% endblock %}</title>
+    <title>{% block title %}Patient Search{% endblock %}</title>
 
     <!-- Caricamento Bootstrap tramite Django -->
     {% load django_bootstrap5 %}
@@ -17,7 +17,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <!-- Titolo della pagina -->
-                <h1 class="text-center mb-4">Ricerca Paziente</h1>
+                <h1 class="text-center mb-4">{{ page_title }}</h1>
 
                 <!-- Form di ricerca paziente -->
                 <div class="card shadow-sm">
@@ -50,7 +50,7 @@
 
     <!-- Footer (opzionale) -->
     <footer class="text-center mt-5 mb-3">
-        <p>&copy; 2024 Ricerca Paziente</p>
+        <p>Made with love in Bologna</p>
     </footer>
 </body>
 

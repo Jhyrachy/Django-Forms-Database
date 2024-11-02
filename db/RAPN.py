@@ -91,6 +91,9 @@ class rapn_ana(ModelForm):
 
 # Anamnsi preoperatoria
 class rapn_preop(ModelForm):
+    def get_description(self):
+        return "Preoperative anamnesis of RAPN"
+
     class Meta:
         model = RAPN
         fields = [
