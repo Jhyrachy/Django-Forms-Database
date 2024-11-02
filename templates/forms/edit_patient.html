@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Modifica Dati{% endblock %}</title>
+
+    <!-- Caricamento di Bootstrap tramite Django -->
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+
+    <!-- Blocco per eventuali CSS extra -->
+    {% block extra_css %}{% endblock %}
+
+    <!-- Caricamento di jQuery e JavaScript di Bootstrap -->
+    {% bootstrap_javascript %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.slim.min.js"></script>
+
+    <!-- Blocco per eventuali script JavaScript extra -->
+    {% block extra_js %}{% endblock %}
+
+    {{ form.media }}
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Titolo della pagina -->
+                <h1 class="text-center mb-4">{{ page_title }}</h1>
+
+                <!-- Dati dell'utente -->
+                <h2 class="text-center text-muted">{{ surname }}, {{ name }}, {{ birthdate }}</h2>
+
+                <!-- Form per l'editing dei dati -->
+                <div class="card mt-4 shadow-sm">
+                    <div class="card-body">
+                        <form action="{{ incoming_url }}" method="post">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+
+                            <!-- Pulsante di submit -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Salva modifiche</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (opzionale, se si vuole aggiungere un footer alla pagina) -->
+    <footer class="text-center mt-5 mb-3">
+        <p>&copy; 2024 Kidney Robotic Surgery</p>
+    </footer>
+</body>
+
+</html>

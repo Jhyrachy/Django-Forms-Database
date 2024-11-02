@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Inserisci Nuovo Paziente{% endblock %}</title>
+
+    <!-- Caricamento Bootstrap tramite Django -->
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <!-- Titolo della pagina -->
+                <h1 class="text-center mb-4">{{ page_title }}</h1>
+
+                <!-- Form per l'inserimento di nuovi dati -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+
+                        <!-- Messaggio di errore, se presente -->
+                        {% if errore %}
+                        <div class="alert alert-danger mt-3" role="alert">
+                            {{ errore }}
+                        </div>
+                        {% endif %}
+
+                        <form action="{{ incoming_url }}" method="post">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+
+                            <!-- Pulsante di submit migliorato -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success btn-lg">Invia</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

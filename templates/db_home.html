@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion Example</title>
+    <!-- Bootstrap 5 CSS -->
+    <!-- Caricamento Bootstrap tramite Django -->
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Elenco database</h1>
+
+        <div class="accordion" id="accordionExample">
+            <!-- Sezione RAPN -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingRAPN">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseRAPN" aria-expanded="false" aria-controls="collapseRAPN">
+                        Database HUGO nuove piattaforme robotiche (RAPN)
+                    </button>
+                </h2>
+                <div id="collapseRAPN" class="accordion-collapse collapse" aria-labelledby="headingRAPN"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="/db/RAPN/rapn_ana/new_patient">Nuovo Paziente</a></li>
+                            <li class="list-group-item"><a href="/db/RAPN/search_patient/rapn_preop">Anamnesi
+                                    Preoperatoria</a>
+                            </li>
+                            <li class="list-group-item"><a href="/db/RAPN/export">Esportazione del database in CSV</a>
+                            </li>
+                            <!-- Aggiungi altri link per la sezione RAPN -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aggiungi altre sezioni accordion per ogni gruppo di maschere di inserimento -->
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS and Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+</body>
+
+</html>

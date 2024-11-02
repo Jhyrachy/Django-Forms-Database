@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ricerca Paziente{% endblock %}</title>
+
+    <!-- Caricamento Bootstrap tramite Django -->
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <!-- Titolo della pagina -->
+                <h1 class="text-center mb-4">Ricerca Paziente</h1>
+
+                <!-- Form di ricerca paziente -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+
+                            <!-- Pulsante di ricerca -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Cerca</button>
+                            </div>
+                        </form>
+
+                        <!-- Risultati della ricerca -->
+                        {% if pk_persona %}
+                        <div class="alert alert-success mt-3" role="alert">
+                            La PK della persona trovata è: <strong>{{ pk_persona }}</strong>
+                        </div>
+                        {% elif errore %}
+                        <div class="alert alert-danger mt-3" role="alert">
+                            {{ errore }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (opzionale) -->
+    <footer class="text-center mt-5 mb-3">
+        <p>&copy; 2024 Ricerca Paziente</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+Django
+python-dotenv
+django-bootstrap5
+django-bootstrap-datepicker-plus

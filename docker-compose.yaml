@@ -1,0 +1,27 @@
+
+services:
+  caddy:
+   container_name: caddy
+   image: caddy:latest # Use Caddy version 2
+   ports:
+    - "80:80" # HTTP
+    - "443:443" # HTTPS
+   volumes:
+    - ./caddy/Caddyfile:/etc/caddy/Caddyfile # Custom Caddy configuration
+    - ./caddy/caddy_data:/data # Caddy data volume for certificates
+    - ./caddy/caddy_config:/config # Caddy configuration volume
+
+  django:
+    container_name: django
+    build: .
+    command: python manage.py runserver
+    volumes:
+      - ./bologna:/bologna #Mappare alla propria cartella di progetto
+    ports:
+      - "8000:8000"
+    depends_on:
+      - caddy
+
+volumes:
+  caddy_data:
+  caddy_config:
